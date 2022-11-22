@@ -1,0 +1,224 @@
+#nui{
+  padding-left: 35%;
+  padding-top: 10%;
+}
+
+.background{
+  background: rgb(0, 0, 0, 0.70);
+  width: 680px;
+  height: auto;
+  padding: 2%;
+  font-family: sans-serif;
+  color: white;
+  font-size: 18px;
+  border-radius: 10px;
+}
+
+.title-background{
+  background: #f00;
+  height: 46px;
+  border-radius: 10px;
+  padding-top: 12px;
+}
+
+.tier-background{
+  margin-top: 10px;
+  background: #f00;
+  height: 46px;
+  border-radius: 10px;
+  padding-top: 12px;
+}
+
+.title-text{
+  font-size: 32px;
+  text-align: center;
+}
+
+.basic-info-background{
+  margin-top: 12px;
+  padding: 12px;
+  display: grid;
+}
+
+.basic-info-title-background{
+  background: #f00);
+  height: 28px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.basic-info-title-text{
+  font-size: 22px;
+  text-align: center;
+}
+
+.basic-info-text-background{
+  margin-top: 10px;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.tuning-item-background{
+  margin-top: 10px;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.hidden{
+  display: none;
+}
+
+.right{
+  text-align: right;
+}
+
+.center{
+  text-align: center;
+}
+
+.grid{
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 15px;
+  grid-auto-rows: minmax(100px,auto);
+}
+
+.col-1{
+  grid-column: 1;
+  grid-row: 1;
+  background: rgb(0, 0, 0, 0.75);
+  border-radius: 10px;
+  padding-bottom: 10px;
+  height: auto;
+}
+
+.col-2{
+  grid-column: 2;
+  grid-row: 1;
+  background: rgb(0, 0, 0, 0.75);
+  border-radius: 10px;
+  height: auto;
+}
+
+.inner-col-1{
+  grid-column: 1;
+  grid-row: 1;
+  text-align: right;
+  margin-left: 8px;
+}
+
+.inner-col-2{
+  grid-column: 2;
+  grid-row: 1;
+  clear: both;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.inner-col-2-f{
+  grid-column: 2;
+  grid-row: 1;
+}
+.tierD{
+  color: rgb(115,115,115);
+}
+.tierC{
+  color: rgb(67,103,221);
+}
+.tierB{
+  color: rgb(124,198,35);
+}
+.tierA{
+  color: rgb(145,0,123);
+}
+.tierS{
+  color: rgb(232,100,27);
+}
+
+.border-3{
+  border: 3px solid #f00;
+  border-radius: 3px;
+}
+
+.mod-background{
+  margin-top: 10px;
+}
+
+.mod-grid{
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.mod-col-1{
+  grid-column: 1;
+  grid-row: 1;
+  background: rgb(0, 0, 0, 0.75);
+  border-radius: 10px;
+  padding: 10px;
+  height: auto;
+  text-align: center;
+  clear: both;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.mod-col-2{
+  grid-column: 2;
+  grid-row: 1;
+  background: rgb(0, 0, 0, 0.75);
+  border-radius: 10px;
+  padding: 10px;
+  height: auto;
+  text-align: center;
+  clear: both;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.mod-col-3{
+  grid-column: 3;
+  grid-row: 1;
+  background: rgb(0, 0, 0, 0.75);
+  border-radius: 10px;
+  padding: 10px;
+  height: auto;
+  text-align: center;
+  clear: both;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.mod-col-4{
+  grid-column: 4;
+  grid-row: 1;
+  background: rgb(0, 0, 0, 0.75);
+  border-radius: 10px;
+  padding: 10px;
+  height: auto;
+  text-align: center;
+  clear: both;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.mod-col-5{
+  grid-column: 5;
+  grid-row: 1;
+  background: rgb(0, 0, 0, 0.75);
+  border-radius: 10px;
+  padding: 10px;
+  height: auto;
+  text-align: center;
+  clear: both;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+}

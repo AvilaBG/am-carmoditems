@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>menuitems</title>
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./style.css" />
+    </head>
+    <body oncopy="false" oncut="false" onpaste="false">
+        <div id="nui" class="hidden">
+            <div class="background">
+                <div class="title-background">
+                    <div class="title-text">
+                        <strong>Información del Vehículo</strong>
+                    </div>
+                </div>
+                <div class="basic-info-background grid">
+                    <div class="col-1">
+                        <div class="basic-info-title-background">
+                            <div class="basic-info-title-text">
+                                <strong>Básica</strong>
+                            </div>
+                        </div>
+                        <div class="basic-info-text-background">
+                            <div class="inner-col-1">
+                                <strong>Marca:</strong>
+                                <strong>Vehículo:</strong><br>
+                                <strong>Matrícula:</strong><br>
+                                <strong>Clase:</strong><br>
+                                <strong>Marchas:</strong>
+                            </div>
+                            <div class="inner-col-2">
+                                <label id="vehbrand">Marca</label>
+                                <label id="vehname">Sultan</label><br>
+                                <label id="vehplate">IJ589DC</label><br>
+                                <label id="vehclass">Sedan</label><br>
+                                <label id="vehgears">5</label><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="basic-info-title-background">
+                            <div class="basic-info-title-text">
+                                <strong>Rendimiento</strong>
+                            </div>
+                        </div>
+                        <div class="tuning-item-background">
+                            <div class="inner-col-1">
+                                <strong>Velocidad:</strong>
+                                <strong>Aceleración:</strong>
+                                <strong>Frenado:</strong>
+                                <strong>Tracción:</strong>
+                            </div>
+                            <div class="inner-col-2-f">
+                                <progress id="speed" max="200" value="0"></progress><br>
+                                <progress id="acceleration" max="0.75000000000001" value="0"></progress><br>
+                                <progress id="braking" max="1.50000000000001" value="0"></progress><br>
+                                <progress id="traction" max="3.00000000000001" value="0"></progress>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="title-background">
+                    <div class="title-text">
+                        <strong>Modificaciones del Vehículo</strong>
+                    </div>
+                </div>
+                <div class="mod-background">
+                    <div class="mod-grid">                        
+                        <div class="mod-col-1">
+                            <label>Motor:</label><br>
+                            <strong id="enginemod">Clase C</strong><br>
+                            <img class="border-3" id="engineimg" src="./Images/nada.png" alt="">
+                        </div>
+                        <div class="mod-col-2">
+                            <label>Frenos:</label><br>
+                            <strong class="" id="brakesmod">Clase C</strong><br>
+                            <img class="border-3" id="brakesimg" src="./Images/nada.png" alt="">
+                        </div>
+                        <div class="mod-col-3">
+                            <label>Transmisión:</label><br>
+                            <strong class="" id="transmisionmod">Clase C</strong><br>
+                            <img class="border-3" id="transmisionimg" src="./Images/nada.png" alt="">
+                        </div>
+                        <div class="mod-col-4">
+                            <label>Suspensión:</label><br>
+                            <strong class="" id="suspensionmod">Clase C</strong><br>
+                            <img class="border-3" id="suspensionimg" src="./Images/nada.png" alt="">
+                        </div>
+                        <div class="mod-col-5">
+                            <label>Turbo:</label><br>
+                            <strong class="" id="turbomod">Clase C</strong><br>
+                            <img class="border-3" id="turboimg" src="./Images/nada.png" alt="">
+                        </div>                         
+                    </div>
+                </div>
+                <div class="tier-background">
+                    <div class="title-text">
+                        <strong>Vehículo Tier:</strong>
+                        <strong class="" id="vehtier">S</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="./ui.js"></script>
+</html>

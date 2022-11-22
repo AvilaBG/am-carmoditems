@@ -6,7 +6,9 @@ description 'Add usabel items for vehicle performance upgrade, and a simple menu
 version '1.0.0'
 
 shared_scripts {
-    'config.lua'
+	'@qb-core/shared/locale.lua',
+	'locales/es.lua' -- << change language here
+    'config.lua',
 }
 
 client_scripts {

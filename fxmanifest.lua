@@ -7,8 +7,8 @@ version '1.0.0'
 
 shared_scripts {
 	'@qb-core/shared/locale.lua',
-	'locales/es.lua' -- << change language here
-    'config.lua',
+	'locales/es.lua', -- << change language here
+    'config.lua'
 }
 
 client_scripts {

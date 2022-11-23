@@ -26,12 +26,12 @@ RegisterCommand('vehinfo', function()
         VehicleInfoMenu()
         SetNuiFocus(true, true)
     else 
-        QBCore.Functions.Notify('Debes estár en un vehículo para ver su información.', 'error')
+        QBCore.Functions.Notify(Lang:t('error.needvehicle'), 'error')
     end
 end, false)
  
 -- Keymapping
-RegisterKeyMapping('vehinfo', 'Ver información sobre el vehículo', 'keyboard', 'u')
+RegisterKeyMapping('vehinfo', Lang:t('text.description'), 'keyboard', 'u')
 
 -- Events
 RegisterNetEvent("moditems:client:installMod", function(mod, type, itemName)
@@ -40,15 +40,15 @@ RegisterNetEvent("moditems:client:installMod", function(mod, type, itemName)
     local maxtype = GetNumVehicleMods(veh, mod) - 1 
     if mod == 18 then
         if IsToggleModOn(veh) then
-            QBCore.Functions.Notify("El vehìculo ya tiene una pieza igual instalada.", "error")
+            QBCore.Functions.Notify(Lang:t('error.alreadyinstalled'), "error")
         end
     else
         if maxtype < type then
-            QBCore.Functions.Notify("El vehículo no soporta esta pieza.", "error")
+            QBCore.Functions.Notify(Lang:t('error.nosupport'), "error")
             return
         end
         if currentmod == type then
-            QBCore.Functions.Notify("El vehículo ya tiene una pieza igual instalada.", "error")
+            QBCore.Functions.Notify(Lang:t('error.alreadyinstalled'), "error")
             return
         end
     end
@@ -67,21 +67,21 @@ RegisterNetEvent("moditems:client:installMod", function(mod, type, itemName)
                     local modmax = GetVehiclenumbre
                     InstallMod(veh, mod, type, itemName)
                 else
-                    QBCore.Functions.Notify('Algo salio mal...', 'error')
+                    QBCore.Functions.Notify(Lang:t('wrong'), 'error')
                 end
 			end
 		else
 			if #(pos - vehpos) > 4.9 then
-				QBCore.Functions.Notify("¡Está demasiado lejos del vehículo!", "error")
+				QBCore.Functions.Notify(Lang:t('error.farfromvehicle'), "error")
 			else
-				QBCore.Functions.Notify("¡No puedes instalar esta pieza desde el interior del vehículo!", "error")
+				QBCore.Functions.Notify(Lang:t('error.insidevehicle'), "error")
 			end
 		end
 	else
 		if veh == nil or veh == 0 then
-			QBCore.Functions.Notify("¡No estás cerca de un vehículo!", "error")
+			QBCore.Functions.Notify(Lang:t('error.farfromvehicle'), "error")
         else
-            QBCore.Functions.Notify("¡Este vehículo ya posee una pieza como ésta instalada!")
+            QBCore.Functions.Notify(Lang:t('error.alreadyinstalled'), "error")
 		end
 	end
 end)
@@ -105,9 +105,9 @@ function InstallMod(veh, mod, type, itemName)
 
     local pBarText = ""
     if mod == 18 then 
-        pBarText = "Instalando "..modLabel
+        pBarText = Lang:t('text.installing')..modLabel
     else 
-        pBarText = "Instalando "..modLabel..": "..typeLabel
+        pBarText = Lang:t('text.installing')..modLabel..": "..typeLabel
     end
 
     if (IsBackEngine(GetEntityModel(veh))) then
@@ -136,10 +136,10 @@ function InstallMod(veh, mod, type, itemName)
         end
         TriggerServerEvent('moditems:server:removeItem', itemName)
         if returnitem then 
-            QBCore.Functions.Notify("Has retirado la pieza anterior.", "success")
+            QBCore.Functions.Notify(Lang:t('text.recoverpart'), "success")
             TriggerServerEvent('moditems:server:addItem', ItemToGiveBack(mod,currentmod))
         end
-        QBCore.Functions.Notify("¡Instalación exitosa!", "success")
+        QBCore.Functions.Notify(Lang:t('text.installed'), "success")
 		if (IsBackEngine(GetEntityModel(veh))) then
 			SetVehicleDoorShut(veh, 5, false)
 		else
@@ -147,7 +147,7 @@ function InstallMod(veh, mod, type, itemName)
 		end
 	end, function() -- Cancel
 		StopAnimTask(PlayerPedId(), "mini@repair", "fixing_a_player", 1.0)
-		QBCore.Functions.Notify("¡Se cancelo la instalación!", "error")
+		QBCore.Functions.Notify(Lang:t('error.installcancel'), "error")
 		if (IsBackEngine(GetEntityModel(veh))) then
 			SetVehicleDoorShut(veh, 5, false)
 		else
@@ -196,13 +196,13 @@ end
 ---@param mod number
 ---@return string
 function GetModLabel(mod)
-    local label = "Desconocido"
-    if mod == 11 then label = "Motor"
-    elseif mod == 12 then label = "Frenos"
-    elseif mod == 13 then label = "Transmision"
-    elseif mod == 15 then label = "Suspensión"
-    elseif mod == 16 then label = "Blindaje"
-    elseif mod == 18 then label = "Turbo"
+    local label = Lang:t('text.modlabelunknown')
+    if mod == 11 then label = Lang:t('text.modlabelengine')
+    elseif mod == 12 then label = Lang:t('text.modlabelbrakes')
+    elseif mod == 13 then label = Lang:t('text.modlabeltransmision')
+    elseif mod == 15 then label = Lang:t('text.modlabelsuspension')
+    elseif mod == 16 then label = Lang:t('text.modlabelarmor')
+    elseif mod == 18 then label = Lang:t('text.modlabelturbo')
     end
     return label
 end
@@ -212,30 +212,30 @@ end
 ---@param type number
 ---@return string
 function GetModTypeLabel(mod, type)
-    local label = "Desconocido"
+    local label = Lang:t('text.modlabelunknown')
     if mod == 12 or mod == 13 then
-        if type == -1 then label = "Sin modificar"
-        elseif type == 0 then label = "Clase C"
-        elseif type == 1 then label = "Clase B"
-        elseif type == 2 then label = "Clase A"
-        elseif type == 3 then label = "Clase S" end
+        if type == -1 then label = Lang:t('text.typenotmodified')
+        elseif type == 0 then label = Lang:t('text.typeclassC')
+        elseif type == 1 then label = Lang:t('text.typeclassB')
+        elseif type == 2 then label = Lang:t('text.typeclassA')
+        elseif type == 3 then label = Lang:t('text.typeclassS') end
     elseif mod == 11 or mod == 15 then
-        if type == -1 then label = "Sin modificar"
-        elseif type == 0 then label = "Clase D"
-        elseif type == 1 then label = "Clase C"
-        elseif type == 2 then label = "Clase B"
-        elseif type == 3 then label = "Clase A"
-        elseif type == 4 then label = "Clase S" end
+        if type == -1 then label = Lang:t('text.typenotmodified')
+        elseif type == 0 then label = Lang:t('text.typeclassD')
+        elseif type == 1 then label = Lang:t('text.typeclassC')
+        elseif type == 2 then label = Lang:t('text.typeclassB')
+        elseif type == 3 then label = Lang:t('text.typeclassA')
+        elseif type == 4 then label = Lang:t('text.typeclassS') end
     elseif mod == 16 then
-        if type == -1 then label = "Sin modificar" 
-        elseif type == 0 then label = "20 %"
-        elseif type == 1 then label = "40 %"
-        elseif type == 2 then label = "60 %"
-        elseif type == 3 then label = "80 %"
-        elseif type == 4 then label = "100 %" end
+        if type == -1 then label = Lang:t('text.typenotmodified')
+        elseif type == 0 then label = Lang:t('text.armor1')
+        elseif type == 1 then label = Lang:t('text.armor2')
+        elseif type == 2 then label = Lang:t('text.armor3')
+        elseif type == 3 then label = Lang:t('text.armor4')
+        elseif type == 4 then label = Lang:t('text.armor5') end
     elseif mod == 17 or mod == 18 then
-        if type == false then label = "No instalado"
-        else label = "Instalado" end
+        if type == false then label = Lang:t('text.modnotinstalled')
+        else label = Lang:t('text.modinstalled') end
     end
     return label
 end
@@ -304,7 +304,7 @@ end
 ---@param class number Vehicle class numbre
 ---@return string
 function GetVehicleClassLabel(class)
-    local label = "Desconocido"
+    local label = Lang:t('text.modlabelunknown')
     if class == 0 then label = "Compact"
     elseif class == 1 then label = "Sedan"
     elseif class == 2 then label = "SUV"

@@ -4,11 +4,7 @@ local QBCore = exports['qb-core']:GetCoreObject()
 ---@param veh vehicle
 ---@return boolean
 local function IsBackEngine(veh)
-	if BackEngineVehicles[veh] then 
-        return true 
-    else 
-        return false 
-    end
+	return  BackEngineVehicles[veh]
 end
 
 local isOpen = false

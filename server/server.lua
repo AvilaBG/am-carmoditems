@@ -121,15 +121,21 @@ QBCore.Functions.CreateUseableItem("suspension_4" , function(source, item)
     end
 end)
 
--- Events
-RegisterNetEvent('moditems:server:removeItem', function(item)
-    local src = source
-    local ply = QBCore.Functions.GetPlayer(src)
-    ply.Functions.RemoveItem(item, 1)
-end)
-
-RegisterNetEvent('moditems:server:addItem', function(item)
-    local src = source
-    local ply = QBCore.Functions.GetPlayer(src)
-    ply.Functions.AddItem(item, 1)
+-- Callbacks
+QBCore.Functions.CreateCallback('moditems:removeItem', function(source, cb, item, itemback)
+    if item then
+        local src = source
+        if itemback then
+            local add = exports["qb-inventory"]:AddItem(source, itemback, 1)
+            if add then
+                TriggerClientEvent('QBCore:Notify', src, Lang:t('text.recoverpart'), "success")                
+            end
+        end
+        local remove = exports["qb-inventory"]:RemoveItem(src, item, 1)
+        if remove then
+            cb(true)
+        else
+            cb(false)
+        end
+    end
 end)

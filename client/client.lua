@@ -1,5 +1,12 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
+local items = {
+    [11] = 'engine_',
+    [12] = 'brakes_',
+    [13] = 'transmision_',
+    [15] = 'suspension_'
+}
+
 ---Checks if the specified vehicle has back engine
 ---@param veh vehicle
 ---@return boolean
@@ -130,12 +137,17 @@ function InstallMod(veh, mod, type, itemName)
         if type ~= nil then
             SetVehicleMod(veh, mod, type, false)
         end
-        TriggerServerEvent('moditems:server:removeItem', itemName)
+        local itemBack = nil
         if returnitem then 
-            QBCore.Functions.Notify(Lang:t('text.recoverpart'), "success")
-            TriggerServerEvent('moditems:server:addItem', ItemToGiveBack(mod,currentmod))
+            itemBack = ItemToGiveBack(mod, currentmod)
         end
-        QBCore.Functions.Notify(Lang:t('text.installed'), "success")
+        QBCore.Functions.TriggerCallback('moditems:removeItem', function(result)
+            if result then
+                QBCore.Functions.Notify(Lang:t('text.installed'), "success")
+            else
+                QBCore.Functions.Notify(Lang:t('error.installcancel'), "error")
+            end
+        end, itemName, itemBack)
 		if (IsBackEngine(GetEntityModel(veh))) then
 			SetVehicleDoorShut(veh, 5, false)
 		else
@@ -156,36 +168,8 @@ end
 ---@param mod number
 ---@param type number
 ---@return string
-function ItemToGiveBack(mod, type)
-    local item = ''
-    if mod == 11 then
-        if type == 0 then item = 'engine_0'
-        elseif type == 1 then item = 'engine_1'
-        elseif type == 2 then item = 'engine_2'
-        elseif type == 3 then item = 'engine_3'
-        elseif type == 4 then item = 'engine_4'
-        end
-    elseif mod == 12 then
-        if type == 0 then item = 'brakes_1'
-        elseif type == 1 then item = 'brakes_2'
-        elseif type == 2 then item = 'brakes_3'
-        elseif type == 3 then item = 'brakes_4'
-        end
-    elseif mod == 13 then
-        if type == 0 then item = 'transmision_1'
-        elseif type == 1 then item = 'transmision_2'
-        elseif type == 2 then item = 'transmision_3'
-        elseif type == 3 then item = 'transmision_4'
-        end
-    elseif mod == 15 then
-        if type == 0 then item = 'suspension_0'
-        elseif type == 1 then item = 'suspension_1'
-        elseif type == 2 then item = 'suspension_2'
-        elseif type == 3 then item = 'suspension_3'
-        elseif type == 4 then item = 'suspension_4'
-        end 
-    end
-    return item
+function ItemToGiveBack(mod, modtype) 
+    return items[mod] .. modtype
 end
 
 ---Returns the name of the mod type
